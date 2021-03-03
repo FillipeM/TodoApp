@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">TodoApp</string>
+    <string name="tituloHint">Título</string>
+    <string name="descricaoHint">Descrição</string>
+    <string name="btnSalvar">Salvar</string>
+    <string name="btnCancelar">Cancelar</string>
+</resources>
