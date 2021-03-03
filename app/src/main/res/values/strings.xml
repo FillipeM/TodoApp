@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TodoApp</string>
+    <string name="app_name">To-do App</string>
     <string name="tituloHint">Título</string>
     <string name="descricaoHint">Descrição</string>
     <string name="btnSalvar">Salvar</string>

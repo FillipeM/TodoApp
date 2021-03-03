@@ -32,5 +32,7 @@ class TodoListItemHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         itemView.btnExcluirTodo.setOnClickListener(View.OnClickListener {
             clickListener.onItemDeleteClick(todo)
         })
+
+        itemView.setOnClickListener(View.OnClickListener { clickListener.onItemClick(todo) })
     }
 }
