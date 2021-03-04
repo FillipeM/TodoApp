@@ -1,5 +1,6 @@
 package com.example.todoapp.data
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
@@ -34,9 +35,10 @@ class TodoDataBaseHelper(val context: Context) : SQLiteOpenHelper(context, DATAB
         cv.put(COL_DESCRICAO, todo.descricao)
         cv.put(COL_FINALIZADO, todo.indFinalizado)
 
-        val result = db.insert(TABLENAME, null, cv)
+        db.insert(TABLENAME, null, cv)
     }
 
+    @SuppressLint("Recycle")
     fun readData(): MutableList<Todo>{
         val db = this.readableDatabase
         val list: MutableList<Todo> = ArrayList()

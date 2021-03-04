@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity(), OnTodoItemClickListener {
             val intent = Intent(this, CreateTodoActivity::class.java)
             startActivity(intent)
         })
-
+        registerForContextMenu(rvTodo)
         configureRecycler()
     }
 
@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity(), OnTodoItemClickListener {
         configureRecycler()
     }
 
-    fun configureRecycler() {
+    private fun configureRecycler() {
         rvTodo.apply {
             adapter = TodoAdapter(getData(), this@MainActivity, this@MainActivity)
             layoutManager = LinearLayoutManager(this@MainActivity)
@@ -42,28 +42,39 @@ class MainActivity : AppCompatActivity(), OnTodoItemClickListener {
         return db.readData()
     }
 
-    override fun onItemFinalizadoClick(todo: Todo) {
+    fun updateTodo(todo: Todo) {
         todo.indFinalizado = !todo.indFinalizado
         val db = TodoDataBaseHelper(this)
         db.updateData(todo)
         configureRecycler()
     }
 
-    override fun onItemDeleteClick(todo: Todo) {
+    fun deleteTodo(todo: Todo) {
         val db = TodoDataBaseHelper(this)
         db.deleteData(todo)
         configureRecycler()
     }
 
+    override fun onItemFinalizadoClick(todo: Todo) {
+        updateTodo(todo)
+    }
+
+    override fun onItemDeleteClick(todo: Todo) {
+        deleteTodo(todo)
+    }
+
     override fun onItemClick(todo: Todo) {
+
+    }
+
+    override fun onItemEditClick(todo: Todo) {
         if (todo.indFinalizado) {
-            Toast.makeText(this, "Não é possível alterar um to-do finalizado!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Não é possível alterar um to-do finalizado!", Toast.LENGTH_SHORT)
+                .show()
         } else {
             val intent = Intent(this, CreateTodoActivity::class.java)
             intent.putExtra("todo", todo)
             startActivity(intent)
         }
-
     }
-
 }

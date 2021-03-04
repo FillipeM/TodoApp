@@ -23,6 +23,4 @@ class TodoAdapter(private val todos: MutableList<Todo>, val clickListener: OnTod
     }
 
     override fun getItemCount() = todos.size
-
-
 }
